@@ -33,21 +33,22 @@ public class AccountActivity_StepDefinitions {
         accountActivityPage.navigateToTransactionsTab();
     }
 
-    @When("The user enters date range from “{int}-{int}-{int}” to “{int}-{int}-{int}”")
-    public void the_user_enters_date_range_from_to(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
-        accountActivityPage.enterDateRange(int1,int2,int3,int4,int5,int6);
+    @When("The user enters date range from {string} to {string}")
+    public void the_user_enters_date_range_from_to(String string, String string2) {
+        accountActivityPage.enterDateRange(string, string2);
     }
-
 
     @When("The user clicks search")
     public void clicks_search() {
         accountActivityPage.findButton.click();
     }
 
-    @Then("Results table should only show transactions dates between “{int}-{int}-{int}” to “{int}-{int}-{int}”")
-    public void results_table_should_only_show_transactions_dates_between_to(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
-        accountActivityPage.verifyDateRange(int1,int2,int3,int4,int5,int6);
+    @Then("results table should only show transactions dates between {string} and {string}")
+    public void results_table_should_only_show_transactions_dates_between_and(String string, String string2) {
+        accountActivityPage.verifyDateRange(string, string2);
     }
+
+
 
 
 

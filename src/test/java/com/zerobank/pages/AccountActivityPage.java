@@ -70,25 +70,20 @@ public class AccountActivityPage extends BasePage {
         Assert.assertEquals(expectedColumns, actualColumns);
     }
 
-    public void enterDateRange(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
-        String fromDate = int1 + "-" + int2 + "-" + int3;
-        String toDate = int4 + "-" + int5 + "-" + int6;
-        fromDateInputBox.sendKeys(fromDate);
-        toDateInputBox.sendKeys(toDate);
-        findButton.click();
-
+    public void enterDateRange(String string, String string2) {
+        fromDateInputBox.sendKeys(string);
+        toDateInputBox.sendKeys(string2);
     }
 
-    public void verifyDateRange(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
-        String fromDate = int1 + "-" + int2 + "-" + int3;
-        String toDate = int4 + "-" + int5 + "-" + int6;
+
+    public void verifyDateRange(String string, String string2) {
         List<WebElement> dates = Driver.get().findElements(By.xpath("//div[@id='all_transactions_for_account']//td[1]"));
         for (WebElement date : dates) {
             String actualDate = date.getText();
-            if (actualDate.compareTo(fromDate) >= 0 && actualDate.compareTo(toDate) <= 0) {
-                Assert.assertTrue(actualDate.compareTo(fromDate) >= 0 && actualDate.compareTo(toDate) <= 0);
+            if (actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0) {
+                Assert.assertTrue(actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0);
             } else {
-                Assert.assertFalse(actualDate.compareTo(fromDate) >= 0 && actualDate.compareTo(toDate) <= 0);
+                Assert.assertFalse(actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0);
             }
         }
     }

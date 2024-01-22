@@ -5,14 +5,18 @@ Feature: Find Transactions in Account Activity
     Given The user is on the login page
 
   @find_transactions1
-  Scenario: Account Activity page should have the title Zero – Account activity
+  Scenario Outline: Account Activity page should have the title Zero – Account activity
     When The user enters valid credentials
     And The user navigates to the "Account Activity" page
     And The user accesses the Find Transactions tab
-    And The user enters date range from “2012-09-01” to “2012-09-06”
+    And The user enters date range from "<fromDate>" to "<toDate>"
     And The user clicks search
-    Then Results table should only show transactions dates between “2012-09-01” to “2012-09-06”
+    Then results table should only show transactions dates between "<fromDate>" and "<toDate>"
     And The results should be sorted by most recent date
+    Examples:
+      | fromDate   | toDate     |
+      | 2012-09-01 | 2012-09-06 |
+
 
   @find_transactions2
   Scenario: Search description
