@@ -43,7 +43,7 @@ public class AccountActivity_StepDefinitions {
         accountActivityPage.findButton.click();
     }
 
-    @Then("results table should only show transactions dates between {string} and {string}")
+    @Then("Results table should only show transactions dates between {string} and {string}")
     public void results_table_should_only_show_transactions_dates_between_and(String string, String string2) {
         accountActivityPage.verifyDateRange(string, string2);
     }

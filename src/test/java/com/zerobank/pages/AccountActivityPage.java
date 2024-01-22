@@ -79,21 +79,21 @@ public class AccountActivityPage extends BasePage {
     public void verifyDateRange(String string, String string2) {
         List<WebElement> dates = Driver.get().findElements(By.xpath("//div[@id='all_transactions_for_account']//td[1]"));
         for (WebElement date : dates) {
-            String actualDate = date.getText();
-            if (actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0) {
-                Assert.assertTrue(actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0);
-            } else {
-                Assert.assertFalse(actualDate.compareTo(string) >= 0 && actualDate.compareTo(string2) <= 0);
-            }
+            String actualDate = date.getAttribute("innerText");
+            boolean isBetween = (actualDate.compareTo(string) >= 0) && (actualDate.compareTo(string2) <= 0);
+            Assert.assertTrue(isBetween);
         }
+
     }
 
     public void verifySortedByDate() {
+        // The results should be sorted by most recent date
         List<WebElement> dates = Driver.get().findElements(By.xpath("//div[@id='all_transactions_for_account']//td[1]"));
         for (int i = 0; i < dates.size() - 1; i++) {
-            String date1 = dates.get(i).getText();
-            String date2 = dates.get(i + 1).getText();
-            Assert.assertTrue(date1.compareTo(date2) >= 0);
+            String date1 = dates.get(i).getAttribute("innerText");
+            String date2 = dates.get(i + 1).getAttribute("innerText");
+            boolean isSorted = date1.compareTo(date2) >= 0;
+            Assert.assertTrue(isSorted);
         }
     }
 
