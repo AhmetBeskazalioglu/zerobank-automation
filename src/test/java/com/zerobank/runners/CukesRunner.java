@@ -8,15 +8,15 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
         plugin = {
-                "html:target/default-report.html",
-                "json:target/cucumber.json",
-                "rerun:target/rerun.txt"
+                "html:target/default-report.html", // to generate default html report
+                "json:target/cucumber.json", // to generate json type report
+                "rerun:target/rerun.txt" // to generate txt file with failed scenarios only
         },
 
         features = "src/test/resources/features",
         glue = "com/zerobank/stepdefinitions",
         dryRun = false,
-        tags = "@pay_bills2"
+        tags = "@find_transactions1"
 
 )
 public class CukesRunner {

@@ -1,6 +1,7 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.AccountActivityPage;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -26,5 +27,68 @@ public class AccountActivity_StepDefinitions {
     @Then("The user verifies that the Transactions table has the following column names:")
     public void the_user_verifies_that_the_transactions_table_has_the_following_column_names(List<String> list) {
         accountActivityPage.verifyTransactionTableColumns(list);
+    }
+    @Given("The user accesses the Find Transactions tab")
+    public void the_user_accesses_the_find_transactions_tab() {
+        accountActivityPage.navigateToTransactionsTab();
+    }
+
+    @When("The user enters date range from “{int}-{int}-{int}” to “{int}-{int}-{int}”")
+    public void the_user_enters_date_range_from_to(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
+        accountActivityPage.enterDateRange(int1,int2,int3,int4,int5,int6);
+    }
+
+
+    @When("The user clicks search")
+    public void clicks_search() {
+        accountActivityPage.findButton.click();
+    }
+
+    @Then("Results table should only show transactions dates between “{int}-{int}-{int}” to “{int}-{int}-{int}”")
+    public void results_table_should_only_show_transactions_dates_between_to(Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) {
+        accountActivityPage.verifyDateRange(int1,int2,int3,int4,int5,int6);
+    }
+
+
+
+    @Then("The results should be sorted by most recent date")
+    public void the_results_should_be_sorted_by_most_recent_date() {
+        accountActivityPage.verifySortedByDate();
+    }
+
+    @When("The user enters description “ONLINE”")
+    public void the_user_enters_description_online() {
+        accountActivityPage.enterDescription("ONLINE");
+    }
+    @Then("Results table should only show descriptions containing “ONLINE”")
+    public void results_table_should_only_show_descriptions_containing_online() {
+        accountActivityPage.verifyDescription("ONLINE");
+    }
+
+    @Then("Results table should show at least one result under Deposit")
+    public void results_table_should_show_at_least_one_result_under_deposit() {
+        accountActivityPage.verifyDeposit();
+    }
+    @Then("Results table should show at least one result under Withdrawal")
+    public void results_table_should_show_at_least_one_result_under_withdrawal() {
+        accountActivityPage.verifyWithdrawal();
+    }
+
+    @When("The user selects type “Deposit” and clicks on Find")
+    public void the_user_selects_type_deposit_and_clicks_on_find() {
+        accountActivityPage.selectDeposit();
+    }
+    @Then("Results table should show no result under Withdrawal")
+    public void results_table_should_show_no_result_under_withdrawal() {
+        accountActivityPage.verifyNoWithdrawal();
+    }
+
+    @When("The user selects type “Withdrawal” and clicks on Find")
+    public void the_user_selects_type_withdrawal_and_clicks_on_find() {
+        accountActivityPage.selectWithdrawal();
+    }
+    @Then("Results table should show no result under Deposit")
+    public void results_table_should_show_no_result_under_deposit() {
+        accountActivityPage.verifyNoDeposit();
     }
 }
