@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class LoginPage extends BasePage{
 
     @FindBy(id = "signin_button")
@@ -31,15 +29,6 @@ public class LoginPage extends BasePage{
         signInButton.click();
         String username = ConfigurationReader.get("username");
         String password = ConfigurationReader.get("password");
-        emailInputBox.sendKeys(username);
-        passwordInputBox.sendKeys(password);
-        loginButton.click();
-        BrowserUtils.waitForPageToLoad(10);
-        Driver.get().get(" http://zero.webappsecurity.com/bank/account-summary.html");
-    }
-
-    public void login(String username, String password){
-        signInButton.click();
         emailInputBox.sendKeys(username);
         passwordInputBox.sendKeys(password);
         loginButton.click();

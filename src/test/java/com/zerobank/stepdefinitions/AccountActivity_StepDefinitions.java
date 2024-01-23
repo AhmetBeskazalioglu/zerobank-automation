@@ -1,18 +1,21 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.AccountActivityPage;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.List;
 
 public class AccountActivity_StepDefinitions {
-    AccountActivityPage accountActivityPage = new AccountActivityPage();
+AccountActivityPage accountActivityPage = new AccountActivityPage();
 
-    @When("The user navigates to the {string} page")
-    public void the_user_navigates_to_the_page(String string) {
-        accountActivityPage.navigateToPage(string);
+    @Then("The Account Activity page should be displayed")
+    public void the_account_activity_page_should_be_displayed() {
+        accountActivityPage.verifyAccountActivityPage();
+    }
+    @Then("Account drop down should have {string} selected")
+    public void account_drop_down_should_have_selected(String string) {
+        accountActivityPage.verifyDefaultOption(string);
     }
 
     @Then("The user verifies that the default option in the Account drop down is {string}")
@@ -27,10 +30,6 @@ public class AccountActivity_StepDefinitions {
     @Then("The user verifies that the Transactions table has the following column names:")
     public void the_user_verifies_that_the_transactions_table_has_the_following_column_names(List<String> list) {
         accountActivityPage.verifyTransactionTableColumns(list);
-    }
-    @Given("The user accesses the Find Transactions tab")
-    public void the_user_accesses_the_find_transactions_tab() {
-        accountActivityPage.navigateToTransactionsTab();
     }
 
     @When("The user enters date range from {string} to {string}")
@@ -47,10 +46,6 @@ public class AccountActivity_StepDefinitions {
     public void results_table_should_only_show_transactions_dates_between_and(String string, String string2) {
         accountActivityPage.verifyDateRange(string, string2);
     }
-
-
-
-
 
     @Then("The results should be sorted by most recent date")
     public void the_results_should_be_sorted_by_most_recent_date() {
@@ -92,4 +87,5 @@ public class AccountActivity_StepDefinitions {
     public void results_table_should_show_no_result_under_deposit() {
         accountActivityPage.verifyNoDeposit();
     }
+
 }

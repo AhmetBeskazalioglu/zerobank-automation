@@ -2,7 +2,6 @@ package com.zerobank.pages;
 
 import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
-import io.cucumber.java.eo.Se;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,16 +10,16 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class AccountActivityPage extends BasePage {
+public class AccountActivityPage extends BasePage{
+
+    @FindBy(css = ".board-header")
+    public WebElement accountActivityPageHeader;
 
     @FindBy(id = "aa_accountId")
     public WebElement accountDropdown;
 
     @FindBy(xpath = "//thead[1]//th")
     public List<WebElement> transactionTableColumns;
-
-    @FindBy(xpath = "//a[.='Find Transactions']")
-    public WebElement findTransactionsTab;
 
     @FindBy(id = "aa_description")
     public WebElement descriptionInputBox;
@@ -57,11 +56,6 @@ public class AccountActivityPage extends BasePage {
         List<String> actualOptions = BrowserUtils.getElementsText(options);
         List<String> expectedOptions = list;
         Assert.assertEquals(expectedOptions, actualOptions);
-    }
-
-    public void navigateToTransactionsTab() {
-        findTransactionsTab.click();
-        BrowserUtils.waitFor(1);
     }
 
     public void verifyTransactionTableColumns(List<String> list) {
@@ -163,4 +157,9 @@ public class AccountActivityPage extends BasePage {
         }
     }
 
+    public void verifyAccountActivityPage(){
+        String expectedHeader = "Show Transactions";
+        String actualHeader = accountActivityPageHeader.getText();
+        Assert.assertEquals(expectedHeader, actualHeader);
+    }
 }

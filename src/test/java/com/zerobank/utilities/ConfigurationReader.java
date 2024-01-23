@@ -9,12 +9,9 @@ public class ConfigurationReader {
 
     static {
         try {
-            //hangi dosyadan bilgi alacağım
-            String path="configuration.properties";
-            //javaya dosyayı okutalım
-            FileInputStream input=new FileInputStream(path);
-            //okunan dosya nereye aktarılacak
-            properties=new Properties();
+            String path = "configuration.properties";
+            FileInputStream input = new FileInputStream(path);
+            properties = new Properties();
             properties.load(input);
             input.close();
         } catch (IOException e) {
@@ -22,7 +19,7 @@ public class ConfigurationReader {
         }
     }
 
-    public static String  get(String keyName) {
+    public static String get(String keyName) {
         return properties.getProperty(keyName);
     }
 }
