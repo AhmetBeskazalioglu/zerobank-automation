@@ -43,8 +43,8 @@ AccountActivityPage accountActivityPage = new AccountActivityPage();
     }
 
     @Then("Results table should only show transactions dates between {string} and {string}")
-    public void results_table_should_only_show_transactions_dates_between_and(String string, String string2) {
-        accountActivityPage.verifyDateRange(string, string2);
+    public void results_table_should_only_show_transactions_dates_between_and(String fromDate, String toDate) {
+        accountActivityPage.verifyDateRange(fromDate, toDate);
     }
 
     @Then("The results should be sorted by most recent date")

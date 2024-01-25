@@ -70,11 +70,11 @@ public class AccountActivityPage extends BasePage{
     }
 
 
-    public void verifyDateRange(String string, String string2) {
+    public void verifyDateRange(String fromDate, String toDate) {
         List<WebElement> dates = Driver.get().findElements(By.xpath("//div[@id='all_transactions_for_account']//td[1]"));
         for (WebElement date : dates) {
             String actualDate = date.getAttribute("innerText");
-            boolean isBetween = (actualDate.compareTo(string) >= 0) && (actualDate.compareTo(string2) <= 0);
+            boolean isBetween = (actualDate.compareTo(fromDate) >= 0) && (actualDate.compareTo(toDate) <= 0);
             Assert.assertTrue(isBetween);
         }
 
